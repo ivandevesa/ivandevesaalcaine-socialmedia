@@ -199,12 +199,13 @@ footer{margin-top:90px;padding-top:26px;border-top:1px solid rgba(255,255,255,.1
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
-.mega,.h2{overflow-wrap:break-word;hyphens:manual}
+.mega,.h2{overflow-wrap:normal;word-break:normal;hyphens:manual}
+.fit{white-space:nowrap;display:block;max-width:100%}
 @media (max-width:700px){
   body{font-size:16px}
   .wrap{padding:0 18px}
   .hero{padding:118px 18px 64px;min-height:auto}
-  .hero .mega{font-size:clamp(38px,11vw,60px);margin:18px 0 22px}
+  .hero .mega{font-size:clamp(34px,9.6vw,60px);margin:18px 0 22px}
   .hero-cta .btn{flex:1 1 100%;justify-content:center;padding:14px 16px}
   .hero-meta{margin:24px 0 28px}
   section{padding:72px 0}
@@ -281,7 +282,7 @@ footer{margin-top:90px;padding-top:26px;border-top:1px solid rgba(255,255,255,.1
 <section class="word" id="curiosidad" data-bg="#FFE3CC">
   <div class="wrap">
     <p class="num reveal">01 / 04</p>
-    <h2 class="mega reveal d1">Curiosidad.</h2>
+    <h2 class="mega fit reveal d1">Curiosidad.</h2>
     <p class="lead reveal d2" style="margin-top:22px">Me pregunto cómo funciona el mundo. Y en redes, eso significa preguntarse por qué algo funciona antes de repetirlo.</p>
     <p class="reveal d2" style="margin-top:18px;color:var(--ink-2)">Cada red tiene su ritmo, su lenguaje y su público, y adaptar el mensaje a cada una cambia el resultado. Cuando se da espacio para crear y decidir, hay menos restricciones y el contenido sale más vivo, más claro y más cerca de los objetivos.</p>
     <div class="grid2">
@@ -301,7 +302,7 @@ footer{margin-top:90px;padding-top:26px;border-top:1px solid rgba(255,255,255,.1
 <section class="word" id="creatividad" data-bg="#F6DDEB">
   <div class="wrap">
     <p class="num reveal">02 / 04</p>
-    <h2 class="mega reveal d1">Creatividad.</h2>
+    <h2 class="mega fit reveal d1">Creatividad.</h2>
     <p class="lead reveal d2" style="margin-top:22px">Ideas que se ven, se entienden y se comparten.</p>
     <p class="reveal d2" style="margin-top:18px;color:var(--ink-2)">En <b>Toyota Material Handling España</b> creé contenido para TikTok y YouTube: piezas pensadas para cada plataforma, no el mismo vídeo recortado tres veces. Y además optimizaba el SEO de la web para mantener su posicionamiento.</p>
     <div class="links reveal d3">
@@ -394,7 +395,7 @@ footer{margin-top:90px;padding-top:26px;border-top:1px solid rgba(255,255,255,.1
 <section class="word" id="autonomia" data-bg="#DDF1E4">
   <div class="wrap">
     <p class="num reveal">03 / 04</p>
-    <h2 class="mega reveal d1">Autonomía.</h2>
+    <h2 class="mega fit reveal d1">Autonomía.</h2>
     <p class="lead reveal d2" style="margin-top:22px">Dame un objetivo y te devuelvo algo publicado.</p>
     <p class="reveal d2" style="margin-top:18px;color:var(--ink-2)"><b>Sale e Pepe</b> es un restaurante italiano con dos locales en el Vallès. Me encargué de su web como proyecto personal: la diseñé, la construí y la publiqué, con selector de local, carta con filtro de alérgenos y SEO local.</p>
     <div class="links reveal d3">
@@ -417,7 +418,7 @@ footer{margin-top:90px;padding-top:26px;border-top:1px solid rgba(255,255,255,.1
 <section class="word" id="velocidad" data-bg="#FFF0B5">
   <div class="wrap">
     <p class="num reveal">04 / 04</p>
-    <h2 class="mega reveal d1">Velocidad.</h2>
+    <h2 class="mega fit reveal d1">Velocidad.</h2>
     <p class="lead reveal d2" style="margin-top:22px">En una startup, lo publicado hoy vale más que lo perfecto el mes que viene.</p>
     <p class="reveal d2" style="margin-top:18px;color:var(--ink-2)">Trabajo, estudio un doble grado y saco proyectos propios adelante a la vez. Aprendo rápido, pruebo, mido y ajusto. Me apoyo en la IA para ejecutar mejor, pero sin abusar: la uso para trabajar mejor, no para que trabaje por mí. <span class="hl">Esta página es la prueba perfecta.</span></p>
     <div class="grid2">
@@ -500,7 +501,7 @@ footer{margin-top:90px;padding-top:26px;border-top:1px solid rgba(255,255,255,.1
 <section class="contact" id="contacto" data-bg="#F3F0EA">
   <div class="wrap">
     <p class="eyebrow reveal" style="color:#FFB38A">Gracias por llegar hasta aquí</p>
-    <h2 class="mega reveal d1" style="margin-top:14px">¿Hablamos?</h2>
+    <h2 class="mega fit reveal d1" style="margin-top:14px">¿Hablamos?</h2>
     <p class="lead reveal d2">Si buscáis a alguien que cree el contenido, mida lo que pasa y construya el sistema para mejorarlo cada semana, ya sabéis dónde encontrarme.</p>
     <div class="contact-list reveal d3">
       <button type="button" id="copyMail" data-mail="ivandevesa87@gmail.com"><small>Email · clic para copiar</small><b>ivandevesa87@gmail.com</b></button>
@@ -584,6 +585,18 @@ footer{margin-top:90px;padding-top:26px;border-top:1px solid rgba(255,255,255,.1
   burger.addEventListener('click',function(){setMenu(!nav.classList.contains('open'))});
   nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
   document.addEventListener('click',function(e){if(!nav.contains(e.target))setMenu(false)});
+
+  // Títulos grandes siempre en una sola línea
+  var fits=document.querySelectorAll('.fit');
+  function fitAll(){fits.forEach(function(el){
+    el.style.fontSize='';
+    var avail=el.clientWidth, need=el.scrollWidth;
+    if(need>avail){var fs=parseFloat(getComputedStyle(el).fontSize);el.style.fontSize=Math.floor(fs*avail/need*0.98)+'px'}
+  })}
+  fitAll();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitAll);
+  addEventListener('load',fitAll);
+  var rt;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(fitAll,120)});
 
   // Copy email
   var toast=document.getElementById('toast'), cm=document.getElementById('copyMail');
